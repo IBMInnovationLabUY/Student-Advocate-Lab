@@ -1,0 +1,270 @@
+{
+  "intents": [
+    {
+      "intent": "ConocerIBM",
+      "examples": [
+        {
+          "text": "que es el innovation lab?"
+        },
+        {
+          "text": "Quienes son?"
+        }
+      ],
+      "description": "Conocer información sobre IBM"
+    },
+    {
+      "intent": "ConocerTecnologiaIBM",
+      "examples": [
+        {
+          "text": "blockchain tema"
+        },
+        {
+          "text": "hablame sobre inteligencia artificial"
+        },
+        {
+          "text": "que es blockchain?"
+        },
+        {
+          "text": "que es inteligencia artificial?"
+        },
+        {
+          "text": "que son los contenedores?"
+        }
+      ],
+      "description": "Tener la intención de saber más sobre los productos de IBM"
+    },
+    {
+      "intent": "Ubicacion",
+      "examples": [
+        {
+          "text": "Cuál es su dirección?"
+        },
+        {
+          "text": "desde dónde trabajan?"
+        },
+        {
+          "text": "Dónde están sus oficinas?"
+        },
+        {
+          "text": "Dónde los podemos encontrar?"
+        }
+      ],
+      "description": "Conocer la dirección de nuestras intalaciones."
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Tema",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Blockchain",
+          "synonyms": [
+            "cadena de bloques"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Contenedores",
+          "synonyms": [
+            "containers",
+            "docker"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Inteligencia artificial",
+          "synonyms": [
+            "ai",
+            "artificial intelligence",
+            "ia"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Machine learning",
+          "synonyms": [
+            "aprendizaje autmático",
+            "ml"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Bienvenido",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hola. Soy el asistente virtual que conoce (un poco) sobre las tecnologías que maneja IBM."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Bienvenido"
+    },
+    {
+      "type": "standard",
+      "title": "En otras cosas",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "No le he entendido. Intente reformular la consulta."
+              },
+              {
+                "text": "¿Puede expresarse con otras palabras? No le he entendido."
+              },
+              {
+                "text": "No entendí el significado."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "En otras cosas",
+      "previous_sibling": "node_3_1637089076785",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Los contenedores son unidades ejecutables de software donde se empaqueta el código de aplicación, junto con sus bibliotecas y dependencias, de forma común para que se pueda ejecutar en cualquier lugar, ya sea en el escritorio, en la TI tradicional o en el cloud."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@Tema:Contenedores && #ConocerTecnologiaIBM",
+      "dialog_node": "node_3_1637089076785",
+      "previous_sibling": "node_4_1637089030381"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "En informática, el término inteligencia artificial (IA) se refiere a cualquier inteligencia similar a la humana exhibida por una computadora, robot u otra máquina. En el uso popular, el término se refiere a la capacidad de una máquina de imitar capacidades de la mente humana como aprender de ejemplos y experiencias, reconocer objetos, comprender, responder, tomar decisiones y resolver problemas."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@Tema:(Inteligencia artificial) && #ConocerTecnologiaIBM",
+      "dialog_node": "node_4_1637089030381",
+      "previous_sibling": "node_7_1637088826118"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Los negocios funcionan con información. Cuanto más rápido la obtienen y más exacta es, mejor. Blockchain es ideal para obtener esa información, puesto que proporciona datos inmediatos, compartidos y completamente transparentes almacenados en un libro mayor distribuido inalterable al que únicamente los miembros autorizados tienen acceso. Una red de blockchain puede hacer seguimiento de pedidos, pagos, cuentas, detalles de producción y mucho más."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@Tema:Blockchain && #ConocerTecnologiaIBM",
+      "dialog_node": "node_7_1637088826118",
+      "previous_sibling": "node_9_1637087942987"
+    },
+    {
+      "type": "standard",
+      "title": "Información sobre IBM Uruguay",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "En IBM Uruguay, más específicamente en el Innovation Lab nos encargamos de modernizar aplicaciónes, ya sea desplegandolas en la nube, cómo integrando soluciones que sean implementadas con Inteligencia Artificial, Blockchain, Openshift y mucho más. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#ConocerIBM",
+      "dialog_node": "node_9_1637086094341",
+      "previous_sibling": "Bienvenido"
+    },
+    {
+      "type": "standard",
+      "title": "¿Cómo encontrarnos?",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "La Cumparsita 1475, Montevideo, Uruguay es nuestra dirección."
+              },
+              {
+                "text": "También puedes contactar directamente a José mediante su LinkedIn: <a href=\"https://www.linkedin.com/in/jose-ignacio-panizza/?originalSubdomain=uy\" target=\"blank\">LinkedIn de José</a>"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "conditions": "#Ubicacion",
+      "dialog_node": "node_9_1637087942987",
+      "previous_sibling": "node_9_1637086094341"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": "Querías decir:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "Ninguna de las anteriores"
+    },
+    "human_agent_assist": {
+      "prompt": "Querías decir:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "Asistente de IBM Uruguay",
+  "language": "es",
+  "description": ""
+}

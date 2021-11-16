@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: miapp
+  labels:
+     app: miapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: miapp
+  template:
+    metadata:
+      labels:
+        app: miapp
+    spec:
+      containers:
+      - name: miapp
+        image: us.icr.io/students-advocate/app-students:v1

@@ -1,0 +1,41 @@
+<% include partials/header.ejs %>
+    <div class="container">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido" required>
+                </div> 
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="number" class="form-control" name="numero" id="numero" placeholder="Numero" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <select id="Posicion" name="posicion" class="form-control" required>
+                        <option selected disabled>Elije una posicion</option>
+                        <option>Arquero</option>
+                        <option>Defensa</option>
+                        <option>Mediocampista</option>
+                        <option>Delantero</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label for="player-img"><b>Imagen del jugador</b></label><br>
+                    <input type="file" name="image" id="player-img" class="" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Agregar Jugador</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<% include partials/header.ejs %>
+    <div class="table-wrapper">
+        <% if (players.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Posicion</th>
+                        <th scope="col">Numero</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% players.forEach((player, index) => { %>
+                        <tr>
+                            <th scope="row"><%= player.id %></th>
+                            <td><img src="/public/assets/img/<%= player.imagen %>" class="rounded-circle player-img" alt=""></td>
+                            <td><%= player.nombre %></td>
+                            <td><%= player.apellido %></td>
+                            <td><%= player.posicion %></td>
+                            <td><%= player.numero %></td>
+                            <td>@<%= player.usuario %></td>
+                            <td>
+                                <a href="/edit/<%= player.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Editar</a>
+                                <a href="/delete/<%= player.id %>" class="btn btn-sm btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No hay jugadores cargados. <a href="/add" >Clic Aqui</a> para agregar jugadores.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>

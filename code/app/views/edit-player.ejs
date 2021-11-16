@@ -1,0 +1,53 @@
+<% include partials/header.ejs %>
+<div class="container">
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (player) { %>
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="first-name">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="<%= player.nombre %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="last-name">Apellido</label>
+                    <input type="text" class="form-control" name="apellido" id="apellido" value="<%= player.apellido %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="username">Usuario</label>
+                    <input type="text" class="form-control" name="usuario" id="usuario" value="<%= player.usuario %>" required disabled title="El usuario no se puede editar.">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="number">Numero</label>
+                    <input type="number" class="form-control" name="numero" id="numero" placeholder="Numero" value="<%= player.numero %>" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="position">Posicion</label>
+                    <select id="posicion" name="posicion" class="form-control" required>
+                        <option selected><%= player.posicion %></option>
+                        <option>Goalkeeper</option>
+                        <option>Centre Back</option>
+                        <option>Right Back</option>
+                        <option>Left Back</option>
+                        <option>Defensive Midfielder</option>
+                        <option>Central Midfielder</option>
+                        <option>Attacking Midfielder</option>
+                        <option>Right Wing Forward</option>
+                        <option>Left Wing Forward</option>
+                        <option>Striker</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success float-right">Actualizar Jugador</button>
+        </form>
+    <% } else { %>
+        <p class="text-center">No se encontraron jugadores<a href="/add">CLic Aqui</a> para agregar alguno.</p>
+    <% } %>
+</div>
+</div>
+</body>
+</html>
